@@ -48,7 +48,6 @@ namespace Site.Traceless.R6.MahuaEvents
                             .Text($"胜率(胜/负):{que.ranked.wl}/{que.ranked.wins}/{que.ranked.losses}").Newline()
                             .Text(@"详情:https://r6stats.com/zh/stats/" + res.uplay_id).Done();
                     }
-                    
                 }
             }
             catch(Exception ex)
