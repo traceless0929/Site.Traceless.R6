@@ -39,13 +39,13 @@ namespace Site.Traceless.R6.MahuaEvents
                             .Text($"总计：").Newline()
                             .Text($"KD(击杀/死亡):{gen.kd}({gen.kills}/{gen.deaths})").Newline()
                             .Text($"近战/穿透/致盲:{gen.melee_kills}/{gen.penetration_kills}/{gen.blind_kills}").Newline()
-                            .Text($"胜率(胜/负):{gen.wl}/{gen.wins}/{gen.losses}").Newline()
+                            .Text($"胜负比(胜/负):{gen.wl}/{gen.wins}/{gen.losses}").Newline()
                             .Text($"休闲：").Newline()
                             .Text($"KD(击杀/死亡):{que.casual.kd}({que.casual.kills}/{que.casual.deaths})").Newline()
-                            .Text($"胜率(胜/负):{que.casual.wl}/{que.casual.wins}/{que.casual.losses}").Newline()
+                            .Text($"胜负比(胜/负):{que.casual.wl}/{que.casual.wins}/{que.casual.losses}").Newline()
                             .Text($"排位：").Newline()
                             .Text($"KD(击杀/死亡):{que.ranked.kd}({que.ranked.kills}/{que.ranked.deaths})").Newline()
-                            .Text($"胜率(胜/负):{que.ranked.wl}/{que.ranked.wins}/{que.ranked.losses}").Newline()
+                            .Text($"胜负比(胜/负):{que.ranked.wl}/{que.ranked.wins}/{que.ranked.losses}").Newline()
                             .Text(@"详情:https://r6stats.com/zh/stats/" + res.uplay_id).Done();
                     }
                     else
