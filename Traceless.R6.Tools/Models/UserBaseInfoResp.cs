@@ -9,7 +9,7 @@ namespace Traceless.R6.Tools.Models
     public class UserBaseInfoResp
     {
 
-        public List<UserBaseItem> data { get; set; } = new List<UserBaseItem>();
+        public UserBaseItem[] data { get; set; };
 
         public class UserBaseItem
         {

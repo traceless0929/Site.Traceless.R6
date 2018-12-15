@@ -14,8 +14,8 @@ namespace Traceless.R6.Tools.Models
         public string uplay_id { get; set; }
         public bool avatar_banned { get; set; }
         public DateTime last_updated { get; set; }
-        public List<Alias> aliases { get; set; } = new List<Alias>();
-        public List<object> profiles { get; set; } = new List<object>();
+        public Alias[] aliases { get; set; } 
+        public object[] profiles { get; set; }
         /// <summary>
         /// 等级进度
         /// </summary>
@@ -23,8 +23,8 @@ namespace Traceless.R6.Tools.Models
         /// <summary>
         /// 曾用名(不太准确
         /// </summary>
-        public List<Stat> stats { get; set; } = new List<Stat>();
-        public List<Operator> operators { get; set; } = new List<Operator>();
+        public Stat[] stats { get; set; } 
+        public Operator[] operators { get; set; }
     }
 
     public class Progression
