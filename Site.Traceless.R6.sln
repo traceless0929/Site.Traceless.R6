@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traceless.TExtension.Tools"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traceless.R6.Tools", "Traceless.R6.Tools\Traceless.R6.Tools.csproj", "{629978AE-CD3F-47E5-907A-6B77B1F17642}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traceless.R6.ToolsTests", "Traceless.R6.ToolsTests\Traceless.R6.ToolsTests.csproj", "{0757178A-8AC9-4F0A-9580-FB73E409A0EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{629978AE-CD3F-47E5-907A-6B77B1F17642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{629978AE-CD3F-47E5-907A-6B77B1F17642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{629978AE-CD3F-47E5-907A-6B77B1F17642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0757178A-8AC9-4F0A-9580-FB73E409A0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0757178A-8AC9-4F0A-9580-FB73E409A0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0757178A-8AC9-4F0A-9580-FB73E409A0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0757178A-8AC9-4F0A-9580-FB73E409A0EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

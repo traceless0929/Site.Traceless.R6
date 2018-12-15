@@ -27,8 +27,7 @@ namespace Traceless.R6.Tools
 
         public static UserDetailInfoResp GetUserDetailInfo(string userName, string pla)
         {
-            UserBaseInfoResp res = TExtension.Tools.ToolClass.GetAPI<UserBaseInfoResp>(
-                BASEURL + BASEINFO + "/" + userName + "/" + pla);
+            UserBaseInfoResp res = GetUserBaseInfo(userName, pla);
             if (res != null)
             {
                 UserDetailInfoResp userDetailInfoResp = TExtension.Tools.ToolClass.GetAPI<UserDetailInfoResp>(BASEURL + DETAILINFO + res.uplay_id);
