@@ -20,19 +20,38 @@ namespace Traceless.R6.Tools
         /// <returns></returns>
         public static UserBaseInfoResp GetUserBaseInfo(string userName,string pla)
         {
-            UserBaseInfoResp res =  Newtonsoft.Json.JsonConvert.DeserializeObject<UserBaseInfoResp>(TExtension.Tools.ToolClass.GetAPI(
-                BASEURL + BASEINFO + "/" + userName + "/" + pla).Replace("[","").Replace("]","").Trim());
+            UserBaseInfoResp res = new UserBaseInfoResp();
+            try
+            {
+                res = Newtonsoft.Json.JsonConvert.DeserializeObject<UserBaseInfoResp>(TExtension.Tools
+                    .ToolClass.GetAPI(
+                        BASEURL + BASEINFO + "/" + userName + "/" + pla).Replace("[", "").Replace("]", "").Trim());
+            }
+            catch
+            {
+                res = null;
+            }
+            
             return res;
         }
 
         public static UserDetailInfoResp GetUserDetailInfo(string userName, string pla)
         {
             UserBaseInfoResp res = GetUserBaseInfo(userName, pla);
-            if (res != null)
+            try
             {
-                UserDetailInfoResp userDetailInfoResp = TExtension.Tools.ToolClass.GetAPI<UserDetailInfoResp>(BASEURL + DETAILINFO + res.uplay_id);
-                return userDetailInfoResp;
+                if (res != null)
+                {
+                    UserDetailInfoResp userDetailInfoResp =
+                        TExtension.Tools.ToolClass.GetAPI<UserDetailInfoResp>(BASEURL + DETAILINFO + res.uplay_id);
+                    return userDetailInfoResp;
+                }
             }
+            catch
+            {
+                res = null;
+            }
+
             return null;
         }
 
