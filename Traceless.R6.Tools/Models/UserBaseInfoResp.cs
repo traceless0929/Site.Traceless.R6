@@ -68,20 +68,6 @@ namespace Traceless.R6.Tools.Models
             /// 负场
             /// </summary>
             public int losses { get; set; }
-            /// <summary>
-            /// 击杀死亡比
-            /// </summary>
-            public double kd
-            {
-                get { return kills / deaths; }
-            }
-            /// <summary>
-            /// 胜率
-            /// </summary>
-            public double winRate
-            {
-                get { return wins / (wins + losses); }
-            }
 
         }
 
