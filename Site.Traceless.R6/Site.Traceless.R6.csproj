@@ -77,6 +77,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="build.bat" />
     <None Include="build.ps1" />
     <None Include="buildTools\packages.config" />

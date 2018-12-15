@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Traceless.R6.Tools.Models;
+using Newt
 
 namespace Traceless.R6.Tools
 {
@@ -20,8 +21,8 @@ namespace Traceless.R6.Tools
         /// <returns></returns>
         public static UserBaseInfoResp GetUserBaseInfo(string userName,string pla)
         {
-            UserBaseInfoResp res = TExtension.Tools.ToolClass.GetAPI<UserBaseInfoResp>(
-                BASEURL + BASEINFO + "/" + userName + "/" + pla);
+            UserBaseInfoResp res =  Newtonsoft.Json.JsonConvert.DeserializeObject<UserBaseInfoResp>(TExtension.Tools.ToolClass.GetAPI(
+                BASEURL + BASEINFO + "/" + userName + "/" + pla).Replace("[","").Replace("]","").Trim());
             return res;
         }
 
@@ -29,10 +30,9 @@ namespace Traceless.R6.Tools
         {
             UserBaseInfoResp res = TExtension.Tools.ToolClass.GetAPI<UserBaseInfoResp>(
                 BASEURL + BASEINFO + "/" + userName + "/" + pla);
-            if (res != null && res.data != null && res.data.Count() > 0)
+            if (res != null)
             {
-                UserBaseInfoResp.UserBaseItem userBaseItem = res.data.FirstOrDefault();
-                UserDetailInfoResp userDetailInfoResp = TExtension.Tools.ToolClass.GetAPI<UserDetailInfoResp>(BASEURL + DETAILINFO + userBaseItem.uplay_id);
+                UserDetailInfoResp userDetailInfoResp = TExtension.Tools.ToolClass.GetAPI<UserDetailInfoResp>(BASEURL + DETAILINFO + res.uplay_id);
                 return userDetailInfoResp;
             }
             return null;
