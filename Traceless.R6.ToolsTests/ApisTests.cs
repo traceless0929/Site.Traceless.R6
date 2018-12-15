@@ -18,5 +18,12 @@ namespace Traceless.R6.Tools.Tests
             UserBaseInfoResp res = Apis.GetUserBaseInfo("wantcnm.Tang", "pc");
             Assert.Fail();
         }
+
+        [TestMethod()]
+        public void GetUserDetailInfoTest()
+        {
+            UserDetailInfoResp res = Apis.GetUserDetailInfo("wantcnm.Tang", "pc");
+            Assert.Fail();
+        }
     }
 }
