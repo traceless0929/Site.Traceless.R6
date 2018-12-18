@@ -10,6 +10,7 @@ namespace Traceless.R6.Tools
     {
         public static string ConvertToRankDes(int rank)
         {
+            if (rank == 0) return "无";
             rank = rank - 1;
             int rankAera = rank / 4;
             int rankLevel = 4-(rank % 4);
