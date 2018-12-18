@@ -88,7 +88,8 @@ namespace Traceless.R6.Tools.Models
             {
                 nc,em,ac
             };
-           return list.FirstOrDefault(p=>p.max_mmr== list.Max(c=>c.max_mmr));
+           int max = list.Max(c => c.max_mmr);
+           return list.FirstOrDefault(p=>p.max_mmr== max);
         }
     }
 
