@@ -74,7 +74,7 @@ namespace Site.Traceless.R6.MahuaEvents
                     infos.ForEach(p =>
                     {
                         var item = p.regions.getBest();
-                        sb.AppendLine($"赛季{p.id}[{p.name}]-最高:{Utils.ConvertToRankDes(item.max_rank)}-当前:{Utils.ConvertToRankDes(item.rank)}-能力值(修正){item.skill_mean}(±{item.skill_standard_deviation})");
+                        sb.AppendLine($"[{p.name}]-当前/最高:{Utils.ConvertToRankDes(item.rank)}/{Utils.ConvertToRankDes(item.max_rank)}-能力值:{item.skill_mean}(±{item.skill_standard_deviation})");
                     });
                     _mahuaApi.SendGroupMessage(context.FromGroup)
                            .Text(sb.ToString())
