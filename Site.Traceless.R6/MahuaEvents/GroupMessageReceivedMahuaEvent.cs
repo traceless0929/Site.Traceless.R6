@@ -78,7 +78,7 @@ namespace Site.Traceless.R6.MahuaEvents
                     });
                     _mahuaApi.SendGroupMessage(context.FromGroup)
                            .Text(sb.ToString())
-                           .Text(@"详情:https://r6stats.com/zh/stats/" + res.uplay_id + "/seasonal").Done();
+                           .Text(@"详情:https://r6stats.com/zh/stats/" + res.uplay_id + "/seasons").Done();
                 }
             }
             catch(Exception ex)
