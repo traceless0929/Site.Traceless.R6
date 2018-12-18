@@ -66,10 +66,11 @@ namespace Site.Traceless.R6.MahuaEvents
                         _mahuaApi.SendGroupMessage(context.FromGroup)
                             .Text(@"[R6战绩]查无此人").Done();
                     }
-                    List<SeasonItem> infos = res.seasons.infos.OrderByDescending(p => p.id).Take(3).ToList();
+                    List<SeasonItem> infos = res.seasons.Getinfos().OrderByDescending(p => p.id).Take(3).ToList();
                     StringBuilder sb = new StringBuilder();
                     RegionsItem nowSeason = infos.FirstOrDefault().regions.getBest();
-                    sb.AppendLine($"[{baseRes.progressionStats.level}]{baseRes.username}-能力值(修正){nowSeason.skill_mean}(±{nowSeason.skill_standard_deviation})-{Utils.ConvertToRankDes(nowSeason.rank)}-MMR[{nowSeason.mmr}]-({nowSeason.prev_rank_mmr}/{nowSeason.next_rank_mmr})");
+                    var rankItem = infos.FirstOrDefault().rankings;
+                    sb.AppendLine($"[{baseRes.progressionStats.level}]{baseRes.username}-排名(全球/亚/美/欧):{rankItem.global}/{rankItem.apac}/{rankItem.ncsa}/{rankItem.emea}-MMR[{nowSeason.mmr}]-({nowSeason.prev_rank_mmr}/{nowSeason.next_rank_mmr})");
                     infos.ForEach(p =>
                     {
                         var item = p.regions.getBest();

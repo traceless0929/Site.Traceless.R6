@@ -72,7 +72,7 @@ namespace Traceless.R6.Tools
                     return userSeasonResp;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 res = null;
             }

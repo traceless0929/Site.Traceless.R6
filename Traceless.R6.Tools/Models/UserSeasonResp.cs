@@ -18,7 +18,17 @@ namespace Traceless.R6.Tools.Models
 
     public class Seasons
     {
-        public List<SeasonItem> infos { get; set; } = new List<SeasonItem>();
+        public SeasonItem wind_bastion { get; set; }
+        public SeasonItem grim_sky { get; set; }
+        public SeasonItem para_bellum { get; set; }
+        public SeasonItem chimera { get; set; }
+        public SeasonItem white_noise { get; set; }
+        public SeasonItem blood_orchid { get; set; }
+        public SeasonItem health { get; set; }
+        public List<SeasonItem> Getinfos()
+        {
+           return new List<SeasonItem>() { wind_bastion, grim_sky, para_bellum, chimera, white_noise, blood_orchid, health };
+        }
     }
 
     public class SeasonItem
@@ -42,7 +52,7 @@ namespace Traceless.R6.Tools.Models
         /// <summary>
         /// 结束时间
         /// </summary>
-        public DateTime end_date { get; set; }
+        public object end_date { get; set; }
         /// <summary>
         /// 排名（只有当前赛季有数据）
         /// </summary>
@@ -58,19 +68,19 @@ namespace Traceless.R6.Tools.Models
         /// <summary>
         /// 美服
         /// </summary>
-        public object ncsa { get; set; }
+        public int? ncsa { get; set; }
         /// <summary>
         /// 欧服
         /// </summary>
-        public object emea { get; set; }
+        public int? emea { get; set; }
         /// <summary>
         /// 亚服
         /// </summary>
-        public int apac { get; set; }
+        public int? apac { get; set; }
         /// <summary>
         /// 全球
         /// </summary>
-        public int global { get; set; }
+        public int? global { get; set; }
     }
 
     public class Regions
@@ -88,7 +98,7 @@ namespace Traceless.R6.Tools.Models
             {
                 nc,em,ac
             };
-           int max = list.Max(c => c.max_mmr);
+           float max = list.Max(c => c.max_mmr);
            return list.FirstOrDefault(p=>p.max_mmr== max);
         }
     }
@@ -118,7 +128,7 @@ namespace Traceless.R6.Tools.Models
         /// <summary>
         /// 最高分数
         /// </summary>
-        public int max_mmr { get; set; }
+        public float max_mmr { get; set; }
         /// <summary>
         /// 最高段位
         /// </summary>
@@ -126,15 +136,15 @@ namespace Traceless.R6.Tools.Models
         /// <summary>
         /// 当前分值
         /// </summary>
-        public int mmr { get; set; }
+        public float mmr { get; set; }
         /// <summary>
         /// 下一级分值
         /// </summary>
-        public int next_rank_mmr { get; set; }
+        public float next_rank_mmr { get; set; }
         /// <summary>
         /// 上一级分值
         /// </summary>
-        public int prev_rank_mmr { get; set; }
+        public float prev_rank_mmr { get; set; }
         /// <summary>
         /// 当前段位
         /// </summary>
@@ -142,7 +152,7 @@ namespace Traceless.R6.Tools.Models
         /// <summary>
         /// 能力评分
         /// </summary>
-        public int skill_mean { get; set; }
+        public float skill_mean { get; set; }
         /// <summary>
         /// 能力修正
         /// </summary>
