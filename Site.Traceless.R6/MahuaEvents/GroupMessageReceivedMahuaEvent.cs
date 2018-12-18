@@ -5,6 +5,8 @@ using Traceless.TExtension.Tools;
 using Traceless.R6.Tools;
 using Traceless.R6.Tools.Models;
 using System.Linq;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Site.Traceless.R6.MahuaEvents
 {
@@ -27,9 +29,10 @@ namespace Site.Traceless.R6.MahuaEvents
             try
             {
                 AnalysisMsg nowModel = new AnalysisMsg(context.Message);
-                if (nowModel.What.ToUpper() == "R6战绩")
+                string cmd = nowModel.What.ToUpper();
+                if (cmd == "R6战绩")
                 {
-                    UserDetailInfoResp res = Apis.GetUserDetailInfo(nowModel.Who, "pc");
+                    UserDetailInfoResp res = Apis.GetUserDetailInfo(Apis.GetUserBaseInfo(nowModel.Who, "pc"));
                     if (res != null)
                     {
                         var gen = res.stats.FirstOrDefault().general;
@@ -53,6 +56,28 @@ namespace Site.Traceless.R6.MahuaEvents
                         _mahuaApi.SendGroupMessage(context.FromGroup)
                             .Text(@"[R6战绩]查无此人").Done();
                     }
+                }
+                else if(cmd=="R6排位")
+                {
+                    UserBaseInfoResp baseRes = Apis.GetUserBaseInfo(nowModel.Who, "pc");
+                    UserSeasonResp res = Apis.GetUserSeasonInfo(baseRes);
+                    if (res == null)
+                    {
+                        _mahuaApi.SendGroupMessage(context.FromGroup)
+                            .Text(@"[R6战绩]查无此人").Done();
+                    }
+                    List<SeasonItem> infos = res.seasons.infos.OrderByDescending(p => p.id).Take(3).ToList();
+                    StringBuilder sb = new StringBuilder();
+                    RegionsItem nowSeason = infos.FirstOrDefault().regions.getBest();
+                    sb.AppendLine($"[{baseRes.progressionStats.level}]{baseRes.username}-能力值(修正){nowSeason.skill_mean}(±{nowSeason.skill_standard_deviation})-{Utils.ConvertToRankDes(nowSeason.rank)}-MMR[{nowSeason.mmr}]-({nowSeason.prev_rank_mmr}/{nowSeason.next_rank_mmr})");
+                    infos.ForEach(p =>
+                    {
+                        var item = p.regions.getBest();
+                        sb.AppendLine($"赛季{p.id}[{p.name}]-最高:{Utils.ConvertToRankDes(item.max_rank)}-当前:{Utils.ConvertToRankDes(item.rank)}-能力值(修正){item.skill_mean}(±{item.skill_standard_deviation})");
+                    });
+                    _mahuaApi.SendGroupMessage(context.FromGroup)
+                           .Text(sb.ToString())
+                           .Text(@"详情:https://r6stats.com/zh/stats/" + res.uplay_id + "/seasonal").Done();
                 }
             }
             catch(Exception ex)

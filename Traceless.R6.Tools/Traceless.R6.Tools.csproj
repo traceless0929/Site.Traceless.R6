@@ -47,7 +47,9 @@
     <Compile Include="Apis.cs" />
     <Compile Include="Models\UserBaseInfoResp.cs" />
     <Compile Include="Models\UserDetailInfoResp.cs" />
+    <Compile Include="Models\UserSeasonResp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Site.Traceless.SmartT\Traceless.TExtension.Tools\Traceless.TExtension.Tools.csproj">

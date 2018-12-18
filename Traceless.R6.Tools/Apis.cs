@@ -12,6 +12,7 @@ namespace Traceless.R6.Tools
         private const string BASEURL = @"https://r6stats.com/api/";
         private const string BASEINFO = @"player-search/";
         private const string DETAILINFO = @"stats/";
+        private const string SEAAONINFO = @"/seasonal";
         /// <summary>
         /// 获取基础信息
         /// </summary>
@@ -34,10 +35,15 @@ namespace Traceless.R6.Tools
             
             return res;
         }
+        /// <summary>
+        /// 获取详细用户信息
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="pla"></param>
+        /// <returns></returns>
 
-        public static UserDetailInfoResp GetUserDetailInfo(string userName, string pla)
+        public static UserDetailInfoResp GetUserDetailInfo(UserBaseInfoResp res)
         {
-            UserBaseInfoResp res = GetUserBaseInfo(userName, pla);
             try
             {
                 if (res != null)
@@ -45,6 +51,25 @@ namespace Traceless.R6.Tools
                     UserDetailInfoResp userDetailInfoResp =
                         TExtension.Tools.ToolClass.GetAPI<UserDetailInfoResp>(BASEURL + DETAILINFO + res.uplay_id);
                     return userDetailInfoResp;
+                }
+            }
+            catch
+            {
+                res = null;
+            }
+
+            return null;
+        }
+
+        public static UserSeasonResp GetUserSeasonInfo(UserBaseInfoResp res)
+        {
+            try
+            {
+                if (res != null)
+                {
+                    UserSeasonResp userSeasonResp =
+                        TExtension.Tools.ToolClass.GetAPI<UserSeasonResp>(BASEURL + DETAILINFO + res.uplay_id+ SEAAONINFO);
+                    return userSeasonResp;
                 }
             }
             catch
