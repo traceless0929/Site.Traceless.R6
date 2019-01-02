@@ -9,9 +9,10 @@ namespace Traceless.R6.Tools
 {
     public class Apis
     {
-        private const string BASEURL = @"https://r6stats.com/api/";
-        private const string BASEINFO = @"player-search/";
-        private const string DETAILINFO = @"stats/";
+        private const string BASEURL = @"https://api.xiaoheihe.cn/game/r6/";
+        private const string BASEINFO = @"search/?q=";
+        private const string DETAILINFO = @"get_player_overview/?player_id=";
+        private const string SEAAONBASE = @"https://r6stats.com/api/stats/";
         private const string SEAAONINFO = @"/seasonal";
         /// <summary>
         /// 获取基础信息
@@ -19,16 +20,14 @@ namespace Traceless.R6.Tools
         /// <param name="userName"></param>
         /// <param name="pla"></param>
         /// <returns></returns>
-        public static UserBaseInfoResp GetUserBaseInfo(string userName,string pla)
+        public static UserBaseInfoResp GetUserBaseInfo(string userName)
         {
             UserBaseInfoResp res = new UserBaseInfoResp();
             try
             {
-                res = Newtonsoft.Json.JsonConvert.DeserializeObject<UserBaseInfoResp>(TExtension.Tools
-                    .ToolClass.GetAPI(
-                        BASEURL + BASEINFO + "/" + userName + "/" + pla).Replace("[", "").Replace("]", "").Trim());
+                res = Newtonsoft.Json.JsonConvert.DeserializeObject<UserBaseInfoResp>(TExtension.Tools.StringHelper.UnicodeDencode(TExtension.Tools.ToolClass.GetAPI(BASEURL + BASEINFO+userName)));
             }
-            catch
+            catch(Exception ex)
             {
                 res = null;
             }
@@ -48,8 +47,9 @@ namespace Traceless.R6.Tools
             {
                 if (res != null)
                 {
-                    UserDetailInfoResp userDetailInfoResp =
-                        TExtension.Tools.ToolClass.GetAPI<UserDetailInfoResp>(BASEURL + DETAILINFO + res.uplay_id);
+                    UserDetailInfoResp userDetailInfoResp = Newtonsoft.Json.JsonConvert.DeserializeObject<UserDetailInfoResp>(TExtension.Tools.StringHelper.UnicodeDencode(TExtension.Tools.ToolClass.GetAPI(BASEURL + DETAILINFO + res.result.player_list.FirstOrDefault().id)));
+                    if (userDetailInfoResp.result.player == null)
+                        return null;
                     return userDetailInfoResp;
                 }
             }
@@ -68,17 +68,16 @@ namespace Traceless.R6.Tools
                 if (res != null)
                 {
                     UserSeasonResp userSeasonResp =
-                        TExtension.Tools.ToolClass.GetAPI<UserSeasonResp>(BASEURL + DETAILINFO + res.uplay_id+ SEAAONINFO);
+                        TExtension.Tools.ToolClass.GetAPI<UserSeasonResp>(SEAAONBASE + res.result.player_list.FirstOrDefault().id + SEAAONINFO);
                     return userSeasonResp;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 res = null;
             }
 
             return null;
         }
-
     }
 }

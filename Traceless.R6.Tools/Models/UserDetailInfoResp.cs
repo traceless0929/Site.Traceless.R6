@@ -8,437 +8,141 @@ namespace Traceless.R6.Tools.Models
 {
     public class UserDetailInfoResp
     {
-        public string username { get; set; }
-        public string platform { get; set; }
-        public string ubisoft_id { get; set; }
-        public string uplay_id { get; set; }
-        public bool avatar_banned { get; set; }
-        public DateTime last_updated { get; set; }
-        /// <summary>
-        /// 曾用名(不太准确
-        /// </summary>
-        public Alias[] aliases { get; set; } 
-        public object[] profiles { get; set; }
-        /// <summary>
-        /// 等级进度
-        /// </summary>
-        public Progression progression { get; set; } = new Progression();
-        public Stat[] stats { get; set; } 
-        public Operator[] operators { get; set; }
+        public string msg { get; set; }
+        public Result result { get; set; }
+        public string status { get; set; }
+        public string version { get; set; }
+
+        public class Result
+        {
+            public string download_url { get; set; }
+            public Game_Queues[] game_queues { get; set; }
+            public Item[] items { get; set; }
+            public Player player { get; set; }
+            public int show_bind_box { get; set; }
+        }
+
+        public class Player
+        {
+            public string avatar { get; set; }
+            public string avatar_btn_state { get; set; }
+            public string avatar_desc { get; set; }
+            public string id { get; set; }
+            public string level { get; set; }
+            public string nickname { get; set; }
+            public string update_desc { get; set; }
+        }
+
+        public class Game_Queues
+        {
+            public string desc1 { get; set; }
+            public string desc2 { get; set; }
+            public Detail[] details { get; set; }
+            public Header[] headers { get; set; }
+            public string history_rank_tips { get; set; }
+            public History_Ranks[] history_ranks { get; set; }
+            public string main1 { get; set; }
+            public string main2 { get; set; }
+            public string queue { get; set; }
+            public Radar radar { get; set; }
+        }
+
+        public class Radar
+        {
+            public string desc1 { get; set; }
+            public string desc2 { get; set; }
+            public string main1 { get; set; }
+            public string main2 { get; set; }
+            public string percent1 { get; set; }
+            public string percent2 { get; set; }
+            public Score[] score { get; set; }
+        }
+
+        public class Score
+        {
+            public string k { get; set; }
+            public string v { get; set; }
+        }
+
+        public class Detail
+        {
+            public string k { get; set; }
+            public string v { get; set; }
+            public string score { get; set; }
+        }
+
+        public class Header
+        {
+            public string k { get; set; }
+            public string type { get; set; }
+            public string v { get; set; }
+            public string score { get; set; }
+            public string icon { get; set; }
+        }
+
+        public class History_Ranks
+        {
+            public string desc { get; set; }
+            public string icon { get; set; }
+            public string medal { get; set; }
+            public string mmr { get; set; }
+            public string season { get; set; }
+        }
+
+        public class Item
+        {
+            public Content[] content { get; set; }
+            public string type { get; set; }
+            public string title { get; set; }
+        }
+
+        public class Content
+        {
+            public string content_url { get; set; }
+            public string desc { get; set; }
+            public int enable { get; set; }
+            public string image_url { get; set; }
+            public string key { get; set; }
+            public int tips_time { get; set; }
+            public string type { get; set; }
+            public string count { get; set; }
+            public string d { get; set; }
+            public string k { get; set; }
+            public string kd { get; set; }
+            public string lose { get; set; }
+            public string mode { get; set; }
+            public string rating { get; set; }
+            public string time { get; set; }
+            public string win { get; set; }
+            public string diff { get; set; }
+            public string trend { get; set; }
+            public string category { get; set; }
+            public string d_per_round { get; set; }
+            public string detail_url { get; set; }
+            public string hs_d_ratio { get; set; }
+            public string icon { get; set; }
+            public string k_per_round { get; set; }
+            public string mmr { get; set; }
+            public string name { get; set; }
+            public string rank { get; set; }
+            public string rounds_played { get; set; }
+            public string rounds_survived { get; set; }
+            public string timeplayed { get; set; }
+            public int timeplayed_v { get; set; }
+            public string win_rate { get; set; }
+            public Content1[] content { get; set; }
+            public string headshot { get; set; }
+            public string hit_ratio { get; set; }
+            public string hs_k { get; set; }
+        }
+
+        public class Content1
+        {
+            public string k { get; set; }
+            public string v { get; set; }
+            public string rank { get; set; }
+        }
     }
 
-    public class Progression
-    {
-        /// <summary>
-        /// 等级
-        /// </summary>
-        public int level { get; set; }
-        /// <summary>
-        /// 战利品概率
-        /// </summary>
-        public int lootbox_probability { get; set; }
-        /// <summary>
-        /// 总经验
-        /// </summary>
-        public int total_xp { get; set; }
-    }
-    /// <summary>
-    /// 曾用名
-    /// </summary>
-    public class Alias
-    {
-        /// <summary>
-        /// 昵称
-        /// </summary>
-        public string username { get; set; }
-        /// <summary>
-        /// 修改时间
-        /// </summary>
-        public DateTime last_seen_at { get; set; }
-    }
-    /// <summary>
-    /// 数据
-    /// </summary>
-    public class Stat
-    {
-        /// <summary>
-        /// 概况
-        /// </summary>
-        public General general { get; set; }
-        /// <summary>
-        /// 排位、休闲数据
-        /// </summary>
-        public Queue queue { get; set; }
-        /// <summary>
-        /// 游戏模式数据
-        /// </summary>
-        public Gamemode gamemode { get; set; }
-        /// <summary>
-        /// 数据时间
-        /// </summary>
-        public Timestamps timestamps { get; set; }
-    }
-
-    public class General
-    {
-        /// <summary>
-        /// 助攻
-        /// </summary>
-        public int assists { get; set; }
-        /// <summary>
-        /// 封阻次数
-        /// </summary>
-        public int barricades_deployed { get; set; }
-        /// <summary>
-        /// 致盲击杀
-        /// </summary>
-        public int blind_kills { get; set; }
-        /// <summary>
-        /// 子弹射击数
-        /// </summary>
-        public int bullets_fired { get; set; }
-        /// <summary>
-        /// 子弹击中数
-        /// </summary>
-        public int bullets_hit { get; set; }
-        /// <summary>
-        /// 被击倒但未死亡
-        /// </summary>
-        public int dbnos { get; set; }
-        /// <summary>
-        /// 死亡
-        /// </summary>
-        public int deaths { get; set; }
-        public int distance_travelled { get; set; }
-        /// <summary>
-        /// 装备摧毁数
-        /// </summary>
-        public int gadgets_destroyed { get; set; }
-        /// <summary>
-        /// 爆头数
-        /// </summary>
-        public int headshots { get; set; }
-        /// <summary>
-        /// 击杀死亡比
-        /// </summary>
-        public float kd { get; set; }
-        /// <summary>
-        /// 击杀
-        /// </summary>
-        public int kills { get; set; }
-        /// <summary>
-        /// 负场
-        /// </summary>
-        public int losses { get; set; }
-        /// <summary>
-        /// 近战击杀
-        /// </summary>
-        public int melee_kills { get; set; }
-        /// <summary>
-        /// 穿透击杀
-        /// </summary>
-        public int penetration_kills { get; set; }
-        /// <summary>
-        /// 游玩时间（到底是什么单位还没研究出来）
-        /// </summary>
-        public int playtime { get; set; }
-        /// <summary>
-        /// 被举报数？
-        /// </summary>
-        public int rappel_breaches { get; set; }
-        /// <summary>
-        /// 强化墙面
-        /// </summary>
-        public int reinforcements_deployed { get; set; }
-        /// <summary>
-        /// 救助
-        /// </summary>
-        public int revives { get; set; }
-        /// <summary>
-        /// 自杀
-        /// </summary>
-        public int suicides { get; set; }
-        /// <summary>
-        /// 胜场
-        /// </summary>
-        public int wins { get; set; }
-        /// <summary>
-        /// 胜负比
-        /// </summary>
-        public float wl { get; set; }
-    }
-
-    public class Queue
-    {
-        /// <summary>
-        /// 休闲
-        /// </summary>
-        public QueueItem casual { get; set; }
-        /// <summary>
-        /// 排位
-        /// </summary>
-        public QueueItem ranked { get; set; }
-    }
-
-    public class QueueItem
-    {
-        /// <summary>
-        /// 死亡
-        /// </summary>
-        public int deaths { get; set; }
-        /// <summary>
-        /// 场次
-        /// </summary>
-        public int games_played { get; set; }
-        /// <summary>
-        /// 击杀死亡比
-        /// </summary>
-        public float kd { get; set; }
-        /// <summary>
-        /// 击杀
-        /// </summary>
-        public int kills { get; set; }
-        /// <summary>
-        /// 负场
-        /// </summary>
-        public int losses { get; set; }
-        /// <summary>
-        /// 游玩时间
-        /// </summary>
-        public int playtime { get; set; }
-        /// <summary>
-        /// 胜场
-        /// </summary>
-        public int wins { get; set; }
-        /// <summary>
-        /// 胜负比
-        /// </summary>
-        public float wl { get; set; }
-    }
     
-    public class Gamemode
-    {
-        /// <summary>
-        /// 拆除炸弹
-        /// </summary>
-        public Bomb bomb { get; set; }
-        /// <summary>
-        /// 团队死斗
-        /// </summary>
-        public Secure_Area secure_area { get; set; }
-        /// <summary>
-        /// 人质营救
-        /// </summary>
-        public Hostage hostage { get; set; }
-    }
-
-    public class Bomb
-    {
-        /// <summary>
-        /// 最高分
-        /// </summary>
-        public int best_score { get; set; }
-        /// <summary>
-        /// 场次
-        /// </summary>
-        public int games_played { get; set; }
-        /// <summary>
-        /// 负场
-        /// </summary>
-        public int losses { get; set; }
-        /// <summary>
-        /// 游玩时间
-        /// </summary>
-        public int playtime { get; set; }
-        /// <summary>
-        /// 胜场
-        /// </summary>
-        public int wins { get; set; }
-        /// <summary>
-        /// 胜负比
-        /// </summary>
-        public float wl { get; set; }
-    }
-
-    public class Secure_Area
-    {
-        /// <summary>
-        /// 最高分
-        /// </summary>
-        public int best_score { get; set; }
-        /// <summary>
-        /// 场次
-        /// </summary>
-        public int games_played { get; set; }
-        /// <summary>
-        /// 作为进攻方击杀
-        /// </summary>
-        public int kills_as_attacker_in_objective { get; set; }
-        /// <summary>
-        /// 作为防守方击杀
-        /// </summary>
-        public int kills_as_defender_in_objective { get; set; }
-        /// <summary>
-        /// 负场
-        /// </summary>
-        public int losses { get; set; }
-        /// <summary>
-        /// 游玩时间
-        /// </summary>
-        public int playtime { get; set; }
-        /// <summary>
-        /// 肃清威胁成功次数
-        /// </summary>
-        public int times_objective_secured { get; set; }
-        /// <summary>
-        /// 胜场
-        /// </summary>
-        public int wins { get; set; }
-        /// <summary>
-        /// 胜负比
-        /// </summary>
-        public float wl { get; set; }
-    }
-
-    public class Hostage
-    {
-        /// <summary>
-        /// 最高分
-        /// </summary>
-        public int best_score { get; set; }
-        /// <summary>
-        /// 场次
-        /// </summary>
-        public int games_played { get; set; }
-        /// <summary>
-        /// 负场
-        /// </summary>
-        public int losses { get; set; }
-        /// <summary>
-        /// 游玩时间
-        /// </summary>
-        public int playtime { get; set; }
-        /// <summary>
-        /// 阻止人质护送次数
-        /// </summary>
-        public int extractions_denied { get; set; }
-        /// <summary>
-        /// 胜场
-        /// </summary>
-        public int wins { get; set; }
-        /// <summary>
-        /// 胜负比
-        /// </summary>
-        public float wl { get; set; }
-    }
-
-    public class Timestamps
-    {
-        public DateTime created { get; set; }
-        public DateTime last_updated { get; set; }
-    }
-
-    public class Operator
-    {
-        /// <summary>
-        /// 击杀
-        /// </summary>
-        public int kills { get; set; }
-        /// <summary>
-        /// 死亡
-        /// </summary>
-        public int deaths { get; set; }
-        /// <summary>
-        /// 击杀死亡比
-        /// </summary>
-        public float kd { get; set; }
-        /// <summary>
-        /// 胜场
-        /// </summary>
-        public int wins { get; set; }
-        /// <summary>
-        /// 负场
-        /// </summary>
-        public int losses { get; set; }
-        /// <summary>
-        /// 胜负比
-        /// </summary>
-        public float wl { get; set; }
-        /// <summary>
-        /// 爆头数
-        /// </summary>
-        public int headshots { get; set; }
-        /// <summary>
-        /// 被击倒但未死亡
-        /// </summary>
-        public int dbnos { get; set; }
-        /// <summary>
-        /// 近战击杀
-        /// </summary>
-        public int melee_kills { get; set; }
-        /// <summary>
-        /// 经验值
-        /// </summary>
-        public int experience { get; set; }
-        /// <summary>
-        /// 使用时长
-        /// </summary>
-        public int playtime { get; set; }
-        /// <summary>
-        /// 技能
-        /// </summary>
-        public Ability[] abilities { get; set; }
-        /// <summary>
-        /// 干员信息
-        /// </summary>
-        public OperatorInfo _operator { get; set; }
-    }
-
-    public class OperatorInfo
-    {
-        /// <summary>
-        /// 名称
-        /// </summary>
-        public string name { get; set; }
-        /// <summary>
-        /// 内部名
-        /// </summary>
-        public string internal_name { get; set; }
-        /// <summary>
-        /// 角色"defender"防守方 "recruit"进攻方
-        /// </summary>
-        public string role { get; set; }
-        /// <summary>
-        /// 所属组织
-        /// </summary>
-        public string ctu { get; set; }
-        /// <summary>
-        /// 图片
-        /// </summary>
-        public Images images { get; set; }
-    }
-
-    public class Images
-    {
-        public string badge { get; set; }
-        public string bust { get; set; }
-        public string figure { get; set; }
-    }
-
-    public class Ability
-    {
-        /// <summary>
-        /// 键
-        /// </summary>
-        public string key { get; set; }
-        /// <summary>
-        /// 标题
-        /// </summary>
-        public string title { get; set; }
-        /// <summary>
-        /// 值
-        /// </summary>
-        public int value { get; set; }
-    }
-
 }
